@@ -9,6 +9,26 @@ export default class Dashboard extends Component {
     transactions: [],
     balance: 0,
   };
+  componentDidMount() {
+    this.setState({
+      transactions: JSON.parse(localStorage.getItem('transactions'))
+        ? JSON.parse(localStorage.getItem('transactions'))
+        : [],
+      balance: JSON.parse(localStorage.getItem('balance'))
+        ? JSON.parse(localStorage.getItem('balance'))
+        : 0,
+    });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState !== this.state) {
+      localStorage.setItem(
+        'transactions',
+        JSON.stringify(this.state.transactions),
+      );
+      localStorage.setItem('balance', JSON.stringify(this.state.balance));
+    }
+  }
 
   handleTransaction = transaction => {
     this.setState(prevState => {

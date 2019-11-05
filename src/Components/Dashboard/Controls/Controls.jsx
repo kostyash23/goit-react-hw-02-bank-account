@@ -9,12 +9,9 @@ import styles from './Controls.module.css';
 toast.configure();
 
 export default class Controls extends Component {
-  constructor() {
-    super();
-    this.state = {
-      input: '',
-    };
-  }
+  state = {
+    input: '',
+  };
 
   handleInput = e => {
     this.setState({
